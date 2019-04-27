@@ -1,9 +1,8 @@
 .App {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 64px 1fr 64px;
   color: #3e3b4f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  font-size: 50px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
 }
