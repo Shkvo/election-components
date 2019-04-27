@@ -9,7 +9,10 @@ const App = () => {
 
   return (
     <div className={cnApp()}>
-      <Button variant="contained" color="primary">
+      <Button
+        variant="contained"
+        color="primary"
+      >
         Hello World
       </Button>
     </div>
