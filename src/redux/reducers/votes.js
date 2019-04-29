@@ -5,7 +5,8 @@ export default (state = {}, action) => {
     case FETCH_VOTES_SUCCESS:
       return {
         ...state,
-        list: action.data
+        list: action.data.list,
+        total: action.data.total
       }
     default:
       return state;
