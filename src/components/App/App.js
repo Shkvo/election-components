@@ -18,7 +18,7 @@ const App = (props) => {
 
   return (
     <div className={cnApp()}>
-      <Header title="Elections" />
+      <Header />
       <Content />
       <Footer />
     </div>

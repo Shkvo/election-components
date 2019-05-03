@@ -11,7 +11,7 @@ import './Header.scss';
 
 const cnHeader = cn('Header');
 
-const Header = ({ title }) => (
+const Header = () => (
   <div className={cnHeader()}>
     <AppBar position="static">
       <Toolbar>
@@ -27,7 +27,7 @@ const Header = ({ title }) => (
           color="inherit"
           className={cnHeader('title')}
         >
-          {title}
+          Elections
         </Typography>
         <Button color="inherit">Sign in</Button>
       </Toolbar>

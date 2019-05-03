@@ -1,16 +1,20 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
+import { Router } from "@reach/router"
 import { cn } from '@bem-react/classname';
+
+import Main from '../Main';
 
 import './Content.scss';
 
 const cnContent = cn('Content');
 
+const Another = () => <h1>Another content</h1>;
+
 const Content = () => (
-  <div className={cnContent()}>
-    <Paper elevation={1}></Paper>
-    <Paper elevation={1}></Paper>
-  </div>
+  <Router className={cnContent()}>
+    <Main path="/" />
+    <Another path="/another" />
+  </Router>
 );
 
 export default Content;
