@@ -1,3 +1,13 @@
+@mixin default-padding {
+  padding: 10px;
+}
+
+@mixin default-stats-grid-template {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 1fr;
+}
+
 .Main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -5,13 +15,42 @@
   grid-gap: 10px;
   height: 100%;
   width: 100%;
+  max-width: 1440px;
+  max-height: 900px;
+  margin: 0 auto;
 
   &-overall {
+    @include default-padding;
+    @include default-stats-grid-template;
     grid-column: 1 / 3;
     grid-row: 1 / 3;
   }
 
+  &-regions {
+    @include default-padding;
+    @include default-stats-grid-template;
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+  }
+
+  &-vote {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+
+    .Main-choiceButton {
+      background: #296cd1;
+      background: linear-gradient(to right, #8E54E9, #296cd1);
+      height: 64px;
+      width: 200px;
+      border-radius: 32px;
+    }
+  }
+
   &-region {
+    @include default-padding;
+    @include default-stats-grid-template;
     grid-column: 3 / 5;
     grid-row: 2 / 3;
   }

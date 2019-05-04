@@ -9,7 +9,9 @@ export default {
     ...defaultState,
   },
   votes: {
-    ...defaultState
+    ...defaultState,
+    data: [],
+    labels: [],
   },
   regions: {
     ...defaultState
