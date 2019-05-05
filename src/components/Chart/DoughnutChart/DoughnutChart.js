@@ -1,7 +1,7 @@
 import Chart from 'chart.js';
 
 const BarChart = (ctx, props) => {
-  const { displayLegend, legendPosition } = props;
+  const { displayLegend } = props;
 
   let gradient = ctx.createLinearGradient(0, 0, 0, 300);
   gradient.addColorStop(0, '#296cd1');
@@ -20,7 +20,7 @@ const BarChart = (ctx, props) => {
       maintainAspectRatio: false,
       legend: {
         display: displayLegend,
-        position: legendPosition,
+        position: 'right',
       }
     }
   });

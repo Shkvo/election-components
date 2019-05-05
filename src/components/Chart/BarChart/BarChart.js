@@ -4,11 +4,11 @@ Chart.plugins.unregister(ChartDataLabels);
 
 const BarChart = (ctx, props) => {
   const { labels, data } = props;
-  const gradient = ctx.createLinearGradient(0, 0, 0, 600);
+  const gradient = ctx.createLinearGradient(0, 0, 0, 700);
 
   gradient.addColorStop(0, '#296cd1');
   gradient.addColorStop(0.4, '#8E54E9');
-  gradient.addColorStop(1, '#ffffff');
+  gradient.addColorStop(1, '#FFFFFF');
 
   return new Chart(ctx, {
     type: 'bar',

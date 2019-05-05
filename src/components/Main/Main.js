@@ -9,30 +9,18 @@ import './Main.scss';
 
 const cnMain = cn('Main');
 
-const Main = ({ labels, data }) => {
+const Main = ({ labels, data, total }) => {
   return (
     <div className={cnMain()}>
       <Paper className={cnMain('overall')}>
         <Typography variant="subheading">
-          Overall votes
+          Current results
         </Typography>
         <Chart
           type="bar"
           data={data}
           labels={labels}
           displayLegend={false}
-        />
-      </Paper>
-      <Paper className={cnMain('regions')}>
-        <Typography variant="subheading">
-          Votes count by region
-        </Typography>
-        <Chart
-          type="doughnut"
-          data={data}
-          labels={labels}
-          legendPosition="right"
-          displayLegend={true}
         />
       </Paper>
       <Paper className={cnMain('vote')}>
@@ -48,16 +36,24 @@ const Main = ({ labels, data }) => {
           Make a choice
         </Fab>
       </Paper>
-      <Paper className={cnMain('region')}>
+      <Paper className={cnMain('votesCount')}>
         <Typography variant="subheading">
-          Votes by region
+          Votes count
         </Typography>
-        <Chart
-          type="line"
-          data={data}
-          labels={labels}
-          displayLegend={false}
-        />
+        <Paper className={cnMain('card')}>
+          <Typography variant="h1" className={cnMain('metric')}>
+            {total}
+          </Typography>
+        </Paper>
+        <br/>
+        <Typography variant="subheading">
+          Registered users
+        </Typography>
+        <Paper className={cnMain('card')}>
+          <Typography variant="h2" className={cnMain('metric')}>
+            10234
+          </Typography>
+        </Paper>
       </Paper>
     </div>
   );
@@ -65,6 +61,7 @@ const Main = ({ labels, data }) => {
 
 const mapStateToProps = state => ({
   data: state.votes.data,
+  total: state.votes.total,
   labels: state.votes.labels,
   regions: state.regions.list,
 });
