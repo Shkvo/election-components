@@ -1,6 +1,7 @@
 import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 Chart.plugins.unregister(ChartDataLabels);
+Chart.defaults.global.defaultFontFamily = 'Roboto';
 
 const BarChart = (ctx, props) => {
   const { labels, data } = props;

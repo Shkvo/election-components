@@ -29,8 +29,8 @@ class Main extends Component {
     this.setState({ filter });
   };
 
-  render () {
-    const { labels, data, total, regions } = this.props;
+  render() {
+    const { labels, votesData, totalVotes, totalUsers, regions } = this.props;
     const { filter } = this.state;
     const options = [{ id: 'All', caption: 'All' }, ...regions];
 
@@ -38,21 +38,21 @@ class Main extends Component {
       <div className={cnMain()}>
         <Paper className={cnMain('overall')}>
           <div className={cnMain('selectWrapper')}>
-            <Typography variant="subheading">
+            <Typography variant="h5">
               Current results
             </Typography>
-            <Select options={options} value={filter} onChange={this.handleFilterChange}/>
+            <Select options={options} value={filter} onChange={this.handleFilterChange} />
           </div>
           <Chart
             type="bar"
-            data={data}
+            data={votesData}
             labels={labels}
             displayLegend={false}
           />
         </Paper>
         <Paper className={cnMain('vote')}>
-          <Typography variant="h5">
-            Didn't make a choice yet?
+          <Typography variant="h2">
+            Didn't <br /> make a choice yet?
           </Typography>
           <Fab
             size="large"
@@ -64,42 +64,45 @@ class Main extends Component {
           </Fab>
         </Paper>
         <Paper className={cnMain('votesCount')}>
-          <Typography variant="subheading">
+          <Typography variant="h5">
             Votes count
           </Typography>
           <Paper className={cnMain('card')}>
             <Typography variant="h1" className={cnMain('metric')}>
-              {total}
+              {totalVotes}
             </Typography>
           </Paper>
           <br />
-          <Typography variant="subheading">
+          <Typography variant="h5">
             Registered users
           </Typography>
           <Paper className={cnMain('card')}>
-            <Typography variant="h2" className={cnMain('metric')}>
-              10234
-            </Typography>
+            {totalUsers && (
+              <Typography variant="h2" className={cnMain('metric')}>
+                {`${totalUsers}34324`}
+              </Typography>
+            )}
           </Paper>
         </Paper>
       </div>
-    );
-  }
-}
+        );
+      }
+    }
 
 const mapStateToProps = state => ({
-  data: state.votes.data,
-  total: state.votes.total,
-  labels: state.votes.labels,
-  regions: state.regions.list,
-});
+        votesData: state.votes.data,
+        totalUsers: state.users.total,
+        totalVotes: state.votes.total,
+        labels: state.votes.labels,
+        regions: state.regions.list,
+      });
 
 const mapDispatchToProps = {
-  fetchVotes: votesActions.fetchVotes,
-  fetchVotesByRegion: votesActions.fetchVotesByRegion
-};
+          fetchVotes: votesActions.fetchVotes,
+        fetchVotesByRegion: votesActions.fetchVotesByRegion
+      };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+      export default connect(
+        mapStateToProps,
+        mapDispatchToProps
 )(Main);

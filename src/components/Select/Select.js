@@ -12,7 +12,7 @@ const Select = ({ options, value, onChange }) => (
     select
     margin="normal"
     onChange={onChange}
-    className={cnSelect('select')}
+    className={cnSelect()}
   >
     {options.map(option => (
       <MenuItem key={option.caption} value={option.id}>
