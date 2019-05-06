@@ -45,16 +45,16 @@ const Header = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>
-              <Link to='/'>
+            <Link to='/'>
+              <MenuItem onClick={handleClose}>
                 Home
-              </Link>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>
-              <Link to='/candidates'>
+              </MenuItem>
+            </Link>
+            <Link to='/candidates'>
+              <MenuItem onClick={handleClose}>
                 Candidates
-              </Link>
-            </MenuItem>
+              </MenuItem>
+            </Link>
           </Menu>
           <Typography
             variant="h6"

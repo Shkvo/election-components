@@ -16,6 +16,7 @@ code {
 a {
   color: #000 !important;
   text-decoration: none;
+  outline: none;
 
   &:active, &:visited {
     color: #000;
