@@ -9,11 +9,11 @@ import {
 
 export function* fetchRegions() {
   try {
-    const regions = yield api.fetchRegions();
+    const { data } = yield api.fetchRegions();
 
     yield put({
       type: FETCH_REGIONS_SUCCESS,
-      data: regions.data
+      data
     });
   } catch (error) {
     yield put({
@@ -23,7 +23,7 @@ export function* fetchRegions() {
   }
 }
 
-export default function* votesSaga() {
+export default function* regionsSaga() {
   yield all([
     takeEvery(FETCH_REGIONS, fetchRegions)
   ]);

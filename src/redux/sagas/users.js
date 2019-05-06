@@ -9,11 +9,11 @@ import {
 
 export function* fetchTotalUsers() {
   try {
-    const users = yield api.fetchTotalUsers();
+    const { data } = yield api.fetchTotalUsers();
 
     yield put({
       type: FETCH_TOTAL_USERS_SUCCESS,
-      data: users.data
+      data
     });
   } catch (error) {
     yield put({

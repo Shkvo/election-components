@@ -3,17 +3,16 @@ import { Router } from "@reach/router"
 import { cn } from '@bem-react/classname';
 
 import Main from '../Main';
+import Candidates from '../Candidates';
 
 import './Content.scss';
 
 const cnContent = cn('Content');
 
-const Another = () => <h1>Another content</h1>;
-
 const Content = () => (
   <Router className={cnContent()}>
     <Main path="/" />
-    <Another path="/another" />
+    <Candidates path="/candidates" />
   </Router>
 );
 

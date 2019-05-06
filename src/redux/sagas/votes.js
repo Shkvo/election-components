@@ -12,11 +12,11 @@ import {
 
 export function* fetchVotes() {
   try {
-    const votes = yield api.fetchVotes();
+    const { data } = yield api.fetchVotes();
 
     yield put({
       type: FETCH_VOTES_SUCCESS,
-      data: votes.data
+      data
     });
   } catch (error) {
     yield put({
@@ -28,11 +28,11 @@ export function* fetchVotes() {
 
 export function* fetchVotesByRegion(action) {
   try {
-    const votes = yield api.fetchVotesByRegion(action.data.id);
+    const { data } = yield api.fetchVotesByRegion(action.data.id);
 
     yield put({
       type: FETCH_VOTES_BY_REGION_SUCCESS,
-      data: votes.data
+      data
     });
   } catch (error) {
     yield put({
