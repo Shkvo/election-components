@@ -19,6 +19,13 @@
   max-height: 900px;
   margin: 0 auto;
 
+  &-selectWrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   &-overall {
     @include default-padding;
     @include default-stats-grid-template;

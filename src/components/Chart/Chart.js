@@ -6,16 +6,18 @@ import './Chart.scss';
 const cnChart = cn('Chart');
 
 const Chart = (props) => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef();
 
   useEffect(() => {
-    let ctx = canvasRef.current.getContext('2d');
-    createChart(ctx, props);
+    const ctx = canvasRef.current.getContext('2d');
+    const chart = createChart(ctx, props);
+
+    return () => chart.destroy();
   });
 
   return (
     <div className={cnChart()}>
-      <canvas ref={canvasRef} id="chart"></canvas>
+      <canvas ref={canvasRef}></canvas>
     </div>
   );
 };

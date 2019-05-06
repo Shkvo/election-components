@@ -60,7 +60,7 @@ const BarChart = (ctx, props) => {
             display: false
           },
           ticks: {
-            fontSize: Math.round((ctx.canvas.width / labels.length) / 12)
+            fontSize: Math.round((ctx.canvas.width / labels.length) / 5)
           }
         }]
       }

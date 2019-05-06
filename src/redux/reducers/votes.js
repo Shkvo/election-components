@@ -1,8 +1,9 @@
-import { FETCH_VOTES_SUCCESS } from '../types';
+import { FETCH_VOTES_SUCCESS, FETCH_VOTES_BY_REGION_SUCCESS } from '../types';
 
 export default (state = {}, action) => {
   switch (action.type) {
     case FETCH_VOTES_SUCCESS:
+    case FETCH_VOTES_BY_REGION_SUCCESS:
       const labels = [];
       const data = [];
 
