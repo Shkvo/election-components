@@ -20,6 +20,7 @@ export function* fetchRegions() {
       type: FETCH_REGIONS_FAILED,
       message: error.message
     });
+    throw error;
   }
 }
 
