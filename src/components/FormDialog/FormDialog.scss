@@ -1,0 +1,17 @@
+.FormDialog {
+
+  &-form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-create {
+    background: linear-gradient(to right, #8E54E9, #296cd1);
+    margin: 10px auto;
+  }
+
+  &-actions {
+    padding: 8px 24px;
+  }
+}

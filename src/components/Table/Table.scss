@@ -1,0 +1,58 @@
+.Table {
+  width: 100%;
+  transition: .3s ease-in-out;
+  animation: init 1s ease-in-out all alternate;
+
+  &-headerWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-header {
+    color: #313131;
+  }
+
+  &-table {
+    width: 100%;
+    height: calc(100vh - 64px - 20px);
+    overflow: scroll;
+
+    thead {
+      th {
+        top: 0;
+        color: #FFF;
+        background: #313131;
+        font-size: 16px;
+        position: sticky;
+      }
+    }
+
+    tbody {
+      tr {
+        cursor: pointer;
+        transition: .2s ease-in-out;
+
+        &:hover {
+          background: rgb(231, 231, 231);
+        }
+      }
+
+      svg {
+        &:hover {
+          fill: rgba(142, 84, 233, 0.5);
+        }
+      }
+    }
+
+    .Table-add {
+      background: linear-gradient(to right, #8E54E9, #296cd1);
+      color: #fff;
+
+      &:hover {
+        background: linear-gradient(to right, #8E54E9, #296cd1);
+      }
+    }
+  }
+}

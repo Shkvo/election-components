@@ -7,7 +7,13 @@ import {
   FETCH_CANDIDATES_FAILED,
   DELETE_CANDIDATE,
   DELETE_CANDIDATE_SUCCESS,
-  DELETE_CANDIDATE_FAILED
+  DELETE_CANDIDATE_FAILED,
+  CREATE_CANDIDATE,
+  CREATE_CANDIDATE_SUCCESS,
+  CREATE_CANDIDATE_FAILED,
+  UPDATE_CANDIDATE,
+  UPDATE_CANDIDATE_SUCCESS,
+  UPDATE_CANDIDATE_FAILED,
 } from '../types';
 
 export function* fetchCandidates() {
@@ -45,9 +51,45 @@ export function* deleteCandidate(action) {
   }
 }
 
+export function* createCandidate(action) {
+  try {
+    const { data } = yield api.createCandidate(action.data.candidate);
+
+    yield put({
+      type: CREATE_CANDIDATE_SUCCESS,
+      data
+    });
+  } catch (error) {
+    yield put({
+      type: CREATE_CANDIDATE_FAILED,
+      message: error.message
+    });
+    throw error;
+  }
+}
+
+export function* updateCandidate(action) {
+  try {
+    const { data } = yield api.updateCandidate(action.data.candidate);
+
+    yield put({
+      type: UPDATE_CANDIDATE_SUCCESS,
+      data
+    });
+  } catch (error) {
+    yield put({
+      type: UPDATE_CANDIDATE_FAILED,
+      message: error.message
+    });
+    throw error;
+  }
+}
+
 export default function* candidatesSaga() {
   yield all([
     takeEvery(FETCH_CANDIDATES, fetchCandidates),
-    takeEvery(DELETE_CANDIDATE, deleteCandidate)
+    takeEvery(DELETE_CANDIDATE, deleteCandidate),
+    takeEvery(CREATE_CANDIDATE, createCandidate),
+    takeEvery(UPDATE_CANDIDATE, updateCandidate)
   ]);
 }

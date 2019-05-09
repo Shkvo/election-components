@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const DeleteDialog = ({ open, handleClose, handleAgree, entity }) => (
+const DeleteDialog = ({ open, handleClose, handleConfirm, entity }) => (
   <Dialog
     open={open}
     onClose={handleClose}
@@ -23,7 +23,7 @@ const DeleteDialog = ({ open, handleClose, handleAgree, entity }) => (
       <Button onClick={handleClose} color="primary">
         Cancel
       </Button>
-      <Button onClick={handleAgree} color="primary" autoFocus>
+      <Button onClick={handleConfirm} color="primary" autoFocus>
         Yes
       </Button>
     </DialogActions>
