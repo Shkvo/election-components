@@ -55,6 +55,11 @@ const Header = () => {
                 Candidates
               </MenuItem>
             </Link>
+            <Link to='/regions'>
+              <MenuItem onClick={handleClose}>
+                Regions
+              </MenuItem>
+            </Link>
           </Menu>
           <Typography
             variant="h6"

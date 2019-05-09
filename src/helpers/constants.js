@@ -23,3 +23,16 @@ export const candidateFormFields = [
     isDate: true
   }
 ];
+
+export const regionHeaderFields = ['Caption', 'Description'];
+export const regionBodyFields = ['caption', 'description'];
+export const regionFormFields = [
+  {
+    label: 'Caption',
+    value: 'caption'
+  },
+  {
+    label: 'Description',
+    value: 'description'
+  }
+];

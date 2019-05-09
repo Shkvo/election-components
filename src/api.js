@@ -7,7 +7,7 @@ const _fetch = async (url, params = {}) => {
 
 export const fetchVotes = async () => await _fetch('votes/overall');
 
-export const fetchRegions = async () => await _fetch('regions');
+export const fetchVotesByRegion = async id => await _fetch(`votes/region/${id}`);
 
 export const fetchCandidates = async () => await _fetch('candidates');
 
@@ -31,8 +31,24 @@ export const updateCandidate = async candidate => await _fetch(`candidates/${can
   body: JSON.stringify({ candidate })
 });
 
+export const fetchRegions = async () => await _fetch('regions');
+
 export const deleteRegion = async id => await _fetch(`regions/${id}`);
 
-export const fetchVotesByRegion = async id => await _fetch(`votes/region/${id}`);
+export const createRegion = async region => await _fetch(`regions`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ region })
+});
+
+export const updateRegion = async region => await _fetch(`regions/${region.id}`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ region })
+});
 
 export const fetchTotalUsers = async () => await _fetch('users/total');

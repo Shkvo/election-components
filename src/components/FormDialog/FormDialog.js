@@ -27,6 +27,7 @@ const FormDialog = ({
 }) => {
   const createTextField = useCallback(field => (
     <TextField
+      key={field.value}
       label={field.label}
       value={data[field.value]}
       onChange={onChange(field.value)}
@@ -36,7 +37,7 @@ const FormDialog = ({
   ));
 
   const createDateField = useCallback(field => (
-    <MuiPickersUtilsProvider utils={DayJsUtils}>
+    <MuiPickersUtilsProvider key={field.value} utils={DayJsUtils}>
       <DatePicker
         inputVariant="outlined"
         margin="normal"
