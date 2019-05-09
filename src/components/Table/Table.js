@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { cn } from '@bem-react/classname';
 import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
@@ -14,7 +14,15 @@ import './Table.scss';
 
 const cnTable = cn('Table');
 
-const Table = ({ entity, headers, data, handleOpenDialog, handleEdit, handleDelete }) => {
+const Table = ({
+  data,
+  entity,
+  bodyFields,
+  handleEdit,
+  handleDelete,
+  headerFields,
+  handleOpenDialog,
+}) => {
   const addButton = (
     <Fab
       size="medium"
@@ -27,52 +35,50 @@ const Table = ({ entity, headers, data, handleOpenDialog, handleEdit, handleDele
       {`Add ${entity}`}
     </Fab>
   );
-  const deleteButton = (id) => (
-    <DeleteIcon
-      color="primary"
-      onClick={handleDelete(id)}
-    />
-  );
 
-  const headerItems = ['#', ...headers, addButton];
-  const bodyItems = ['#', ...data, deleteButton];
+  const deleteButton = useCallback(id => (
+    <DeleteIcon color="primary" onClick={handleDelete(id)} />
+  ));
+
+  const headerItems = ['#', ...headerFields, addButton];
+  const bodyItems = ['#', ...bodyFields, deleteButton];
 
   const tableHeader = headerItems.map((item, index) => {
     if (index === 0) {
-      return <TableCell>{item}</TableCell>;
+      return <TableCell key={index}>{item}</TableCell>;
     }
 
     if (headerItems.length - 1 === index) {
-      return <TableCell align="right">{item}</TableCell>
+      return <TableCell key={index} align="right">{item}</TableCell>;
     }
 
-    return <TableCell align="left">{item}</TableCell>
+    return <TableCell key={index} align="left">{item}</TableCell>;
   });
 
-  const tableBody = (id, index) => bodyItems.map(item => {
-    if (index === 0) {
-      return <TableCell>{index}</TableCell>;
-    }
+  const tableBody = (data, index) =>
+    bodyItems.map((item, itemIndex) => {
+      const itemKey = `${item.id}_${itemIndex}`;
+      if (itemIndex === 0) {
+        return <TableCell key={itemKey}>{index}</TableCell>;
+      }
 
-    if (headerItems.length - 1 === index) {
-      return <TableCell align="right">{item(id)}</TableCell>
-    }
+      if (bodyItems.length - 1 === itemIndex) {
+        return <TableCell key={itemKey} align="right">{item(data.id)}</TableCell>;
+      }
 
-    return <TableCell align="left">{item}</TableCell>
-  });
+      return <TableCell key={itemKey} align="left">{data[item]}</TableCell>;
+    });
 
   return (
     <Paper className={cnTable('table')}>
       <MuiTable>
         <TableHead>
-          <TableRow>
-            {tableHeader}
-          </TableRow>
+          <TableRow>{tableHeader}</TableRow>
         </TableHead>
         <TableBody>
           {data.map((item, index) => (
             <TableRow onClick={handleEdit(item)} key={item.id}>
-              {tableBody(item.id, index)}
+              {tableBody(item, index)}
             </TableRow>
           ))}
         </TableBody>

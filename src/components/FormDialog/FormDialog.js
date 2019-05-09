@@ -35,7 +35,7 @@ const FormDialog = ({
       {`${isEditing ? 'Edit' : 'Create'} ${entity}`}
     </DialogTitle>
     <DialogContent>
-      <form className={cnFormDialog('form')} noValidate autoComplete="off">
+      <form className={cnFormDialog('form')} autoComplete="off">
         <TextField
           label="First name"
           value={data.firstName}
@@ -84,7 +84,7 @@ const FormDialog = ({
         color="primary"
         variant="extended"
         onClick={handleConfirm}
-        className={cnFormDialog('create')}
+        className={cnFormDialog('confirm')}
       >
         Confirm
       </Fab>

@@ -1,29 +1,31 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { cn } from '@bem-react/classname';
-import Fab from '@material-ui/core/Fab';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import DeleteIcon from '@material-ui/icons/DeleteOutlined';
-import AddIcon from '@material-ui/icons/Add';
+import * as candidatesActions from '../../redux/actions/candidates';
 import DeleteDialog from '../DeleteDialog';
 import FormDialog from '../FormDialog';
-import * as candidatesActions from '../../redux/actions/candidates';
+import Table from '../Table';
 
 import './Candidates.scss';
 
 const cnCandidates = cn('Candidates');
 
+const headerFields = ['First Name', 'Last Name', 'Third Name', 'Description'];
+const bodyFields = ['firstName', 'lastName', 'thirdName', 'description'];
+const defaultCandidate = {
+  firstName: '',
+  lastName: '',
+  thirdName: '',
+  description: '',
+  birthDate: null
+};
+
 const Candidates = (props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [currentRow, setCurrentRow] = useState(null);
-  const [candidateData, setCandidateData] = useState({});
+  const [candidateData, setCandidateData] = useState(defaultCandidate);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [isFormDialogOpen, setIsFormDialogOpen] = useState(false);
 
   const handleChangeBirthDate = useCallback(birthDate => setCandidateData({
     ...candidateData,
@@ -40,15 +42,14 @@ const Candidates = (props) => {
     props.deleteCandidate(currentRow)
   });
 
-  const handleConfirmCreateDialog = useCallback(() => {
-    setIsCreateDialogOpen(false)
+  const handleConfirmFormDialog = useCallback(() => {
+    setIsFormDialogOpen(false)
     if (isEditing) {
       props.updateCandidate(candidateData);
-      setIsEditing(false);
     } else {
       props.createCandidate(candidateData);
     }
-    setCandidateData({});
+    setCandidateData(defaultCandidate);
   });
 
   const handleOpenDeleteDialog = useCallback(id => e => {
@@ -59,18 +60,18 @@ const Candidates = (props) => {
 
   const handleEditCandidate = useCallback(candidate => e => {
     setIsEditing(true);
-    setIsCreateDialogOpen(true);
     setCandidateData(candidate);
+    setIsFormDialogOpen(true);
   });
 
-  const handleOpenCreateDialog = useCallback(() => setIsCreateDialogOpen(true));
+  const handleOpenFormDialog = useCallback(() => setIsFormDialogOpen(true));
 
   const handleCloseDeleteDialog = useCallback(() => setIsDeleteDialogOpen(false));
 
-  const handleCloseCreateDialog = useCallback(() => {
+  const handleCloseFormDialog = useCallback(() => {
+    setIsFormDialogOpen(false);
+    setCandidateData(defaultCandidate);
     setIsEditing(false);
-    setCandidateData({});
-    setIsCreateDialogOpen(false)
   });
 
   useEffect(() => {
@@ -87,56 +88,23 @@ const Candidates = (props) => {
       />
       <FormDialog
         isEditing={isEditing}
-        open={isCreateDialogOpen}
+        open={isFormDialogOpen}
         entity="candidate"
         data={candidateData}
         onChange={handleSetCandidateData}
         onChangeDate={handleChangeBirthDate}
-        handleClose={handleCloseCreateDialog}
-        handleConfirm={handleConfirmCreateDialog}
+        handleClose={handleCloseFormDialog}
+        handleConfirm={handleConfirmFormDialog}
       />
-      <Paper className={cnCandidates('table')}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>#</TableCell>
-              <TableCell align="left">First Name</TableCell>
-              <TableCell align="left">Last Name</TableCell>
-              <TableCell align="left">Third Name</TableCell>
-              <TableCell align="left">Description</TableCell>
-              <TableCell align="right">
-                <Fab
-                  size="medium"
-                  color="primary"
-                  variant="extended"
-                  onClick={handleOpenCreateDialog}
-                  className={cnCandidates('add')}
-                >
-                  <AddIcon />
-                  Add candidate
-                </Fab>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {props.candidates.map((candidate, index) => (
-              <TableRow onClick={handleEditCandidate(candidate)} key={candidate.id}>
-                <TableCell scope="row">{index}</TableCell>
-                <TableCell align="left">{candidate.firstName}</TableCell>
-                <TableCell align="left">{candidate.lastName}</TableCell>
-                <TableCell align="left">{candidate.thirdName}</TableCell>
-                <TableCell align="left">{candidate.description}</TableCell>
-                <TableCell align="right">
-                  <DeleteIcon
-                    color="primary"
-                    onClick={handleOpenDeleteDialog(candidate.id)}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
+      <Table
+        data={props.candidates}
+        entity="candidate"
+        bodyFields={bodyFields}
+        handleEdit={handleEditCandidate}
+        handleDelete={handleOpenDeleteDialog}
+        headerFields={headerFields}
+        handleOpenDialog={handleOpenFormDialog}
+      />
     </div>
   );
 };
