@@ -5,13 +5,16 @@ import * as candidatesActions from '../../redux/actions/candidates';
 import DeleteDialog from '../DeleteDialog';
 import FormDialog from '../FormDialog';
 import Table from '../Table';
+import {
+  candidateHeaderFields,
+  candidateBodyFields,
+  candidateFormFields
+} from '../../helpers/constants';
 
 import './Candidates.scss';
 
 const cnCandidates = cn('Candidates');
 
-const headerFields = ['First Name', 'Last Name', 'Third Name', 'Description'];
-const bodyFields = ['firstName', 'lastName', 'thirdName', 'description'];
 const defaultCandidate = {
   firstName: '',
   lastName: '',
@@ -20,30 +23,34 @@ const defaultCandidate = {
   birthDate: null
 };
 
-const Candidates = (props) => {
+const Candidates = props => {
   const [isEditing, setIsEditing] = useState(false);
   const [currentRow, setCurrentRow] = useState(null);
   const [candidateData, setCandidateData] = useState(defaultCandidate);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [isFormDialogOpen, setIsFormDialogOpen] = useState(false);
 
-  const handleChangeBirthDate = useCallback(birthDate => setCandidateData({
-    ...candidateData,
-    birthDate
-  }));
+  const handleChangeBirthDate = useCallback(birthDate =>
+    setCandidateData({
+      ...candidateData,
+      birthDate
+    })
+  );
 
-  const handleSetCandidateData = useCallback(field => event => setCandidateData({
-    ...candidateData,
-    [field]: event.target.value
-  }));
+  const handleSetCandidateData = useCallback(field => event =>
+    setCandidateData({
+      ...candidateData,
+      [field]: event.target.value
+    })
+  );
 
   const handleConfirmDeleteDialog = useCallback(() => {
-    setIsDeleteDialogOpen(false)
-    props.deleteCandidate(currentRow)
+    setIsDeleteDialogOpen(false);
+    props.deleteCandidate(currentRow);
   });
 
   const handleConfirmFormDialog = useCallback(() => {
-    setIsFormDialogOpen(false)
+    setIsFormDialogOpen(false);
     if (isEditing) {
       props.updateCandidate(candidateData);
     } else {
@@ -66,7 +73,9 @@ const Candidates = (props) => {
 
   const handleOpenFormDialog = useCallback(() => setIsFormDialogOpen(true));
 
-  const handleCloseDeleteDialog = useCallback(() => setIsDeleteDialogOpen(false));
+  const handleCloseDeleteDialog = useCallback(() =>
+    setIsDeleteDialogOpen(false)
+  );
 
   const handleCloseFormDialog = useCallback(() => {
     setIsFormDialogOpen(false);
@@ -87,6 +96,7 @@ const Candidates = (props) => {
         handleConfirm={handleConfirmDeleteDialog}
       />
       <FormDialog
+        fields={candidateFormFields}
         isEditing={isEditing}
         open={isFormDialogOpen}
         entity="candidate"
@@ -99,10 +109,10 @@ const Candidates = (props) => {
       <Table
         data={props.candidates}
         entity="candidate"
-        bodyFields={bodyFields}
+        bodyFields={candidateBodyFields}
         handleEdit={handleEditCandidate}
         handleDelete={handleOpenDeleteDialog}
-        headerFields={headerFields}
+        headerFields={candidateHeaderFields}
         handleOpenDialog={handleOpenFormDialog}
       />
     </div>
