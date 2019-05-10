@@ -15,7 +15,8 @@ export const candidateFormFields = [
   },
   {
     label: 'Description',
-    value: 'description'
+    value: 'description',
+    isMultiline: true
   },
   {
     label: 'Date of birth',
@@ -33,6 +34,7 @@ export const regionFormFields = [
   },
   {
     label: 'Description',
-    value: 'description'
+    value: 'description',
+    isMultiline: true
   }
 ];

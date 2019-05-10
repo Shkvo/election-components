@@ -33,6 +33,7 @@ const FormDialog = ({
       onChange={onChange(field.value)}
       margin="normal"
       variant="outlined"
+      multiline={field.isMultiline}
     />
   ));
 
