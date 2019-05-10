@@ -85,24 +85,24 @@ class Main extends Component {
           </Paper>
         </Paper>
       </div>
-        );
-      }
-    }
+    );
+  }
+}
 
 const mapStateToProps = state => ({
-        votesData: state.votes.data,
-        totalUsers: state.users.total,
-        totalVotes: state.votes.total,
-        labels: state.votes.labels,
-        regions: state.regions.list,
-      });
+  votesData: state.votes.data,
+  totalUsers: state.users.total,
+  totalVotes: state.votes.total,
+  labels: state.votes.labels,
+  regions: state.regions.list,
+});
 
 const mapDispatchToProps = {
-          fetchVotes: votesActions.fetchVotes,
-        fetchVotesByRegion: votesActions.fetchVotesByRegion
-      };
+  fetchVotes: votesActions.fetchVotes,
+  fetchVotesByRegion: votesActions.fetchVotesByRegion
+};
 
-      export default connect(
-        mapStateToProps,
-        mapDispatchToProps
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(Main);

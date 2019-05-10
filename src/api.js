@@ -33,7 +33,9 @@ export const updateCandidate = async candidate => await _fetch(`candidates/${can
 
 export const fetchRegions = async () => await _fetch('regions');
 
-export const deleteRegion = async id => await _fetch(`regions/${id}`);
+export const deleteRegion = async id => await _fetch(`regions/${id}`, {
+  method: 'DELETE'
+});
 
 export const createRegion = async region => await _fetch(`regions`, {
   method: 'POST',

@@ -47,6 +47,6 @@ export function* fetchVotesByRegion(action) {
 export default function* votesSaga() {
   yield all([
     takeEvery(FETCH_VOTES, fetchVotes),
-    takeEvery(FETCH_VOTES_BY_REGION, fetchVotesByRegion),
+    takeEvery(FETCH_VOTES_BY_REGION, fetchVotesByRegion)
   ]);
 }
