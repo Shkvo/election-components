@@ -7,7 +7,10 @@ import {
   FETCH_VOTES_FAILED,
   FETCH_VOTES_BY_REGION,
   FETCH_VOTES_BY_REGION_SUCCESS,
-  FETCH_VOTES_BY_REGION_FAILED
+  FETCH_VOTES_BY_REGION_FAILED,
+  CREATE_VOTE,
+  CREATE_VOTE_SUCCESS,
+  CREATE_VOTE_FAILED
 } from '../types';
 
 export function* fetchVotes() {
@@ -21,6 +24,21 @@ export function* fetchVotes() {
   } catch (error) {
     yield put({
       type: FETCH_VOTES_FAILED,
+      message: error.message
+    });
+    throw error;
+  }
+}
+
+export function* createVote(action) {
+  try {
+    yield api.createVote(action.data.vote);
+    yield put({
+      type: CREATE_VOTE_SUCCESS
+    });
+  } catch (error) {
+    yield put({
+      type: CREATE_VOTE_FAILED,
       message: error.message
     });
     throw error;
@@ -47,6 +65,7 @@ export function* fetchVotesByRegion(action) {
 export default function* votesSaga() {
   yield all([
     takeEvery(FETCH_VOTES, fetchVotes),
+    takeEvery(CREATE_VOTE, createVote),
     takeEvery(FETCH_VOTES_BY_REGION, fetchVotesByRegion)
   ]);
 }

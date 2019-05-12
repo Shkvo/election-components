@@ -1,0 +1,53 @@
+.Votes {
+  display: grid;
+  grid-template: 80px 1fr 80px / 1fr;
+  justify-items: center;
+  width: 760px;
+  height: calc(100vh - 64px - 20px);
+  margin: 0 auto;
+  overflow: hidden;
+
+  & &-header {
+    margin: 20px 0;
+  }
+
+  &-candidate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 92%;
+    margin-bottom: 15px;
+    min-height: 70px;
+    margin: 0% 2%;
+    margin-bottom: 15px;
+    padding: 1% 2%;
+    cursor: pointer;
+
+    &:first-of-type {
+      margin-top: 5px;
+    }
+  }
+
+  &-candidates {
+    width: 95%;
+    padding: 0 2.5%;
+    overflow-y: auto;
+  }
+
+  &-buttons {
+    padding: 2% 0;
+  }
+
+  &-done {
+    padding-right: 5px;
+  }
+
+  &-confirm {
+    background: linear-gradient(to right, #8E54E9, #296cd1);
+    color: #fff;
+
+    &:hover {
+      background: linear-gradient(to right, #8E54E9, #296cd1);
+    }
+  }
+}

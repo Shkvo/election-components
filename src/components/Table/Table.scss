@@ -1,7 +1,5 @@
 .Table {
   width: 100%;
-  transition: .3s ease-in-out;
-  animation: init 1s ease-in-out all alternate;
 
   &-headerWrapper {
     display: flex;
@@ -26,6 +24,10 @@
         background: #313131;
         font-size: 16px;
         position: sticky;
+
+        &:last-of-type {
+          width: 180px;
+        }
       }
     }
 

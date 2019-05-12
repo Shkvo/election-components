@@ -1,4 +1,9 @@
-import { FETCH_VOTES_SUCCESS, FETCH_VOTES_BY_REGION_SUCCESS } from '../types';
+import {
+  FETCH_VOTES_SUCCESS,
+  FETCH_VOTES_BY_REGION_SUCCESS,
+  CREATE_VOTE_SUCCESS,
+  CREATE_VOTE_FAILED
+} from '../types';
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -21,7 +26,20 @@ export default (state = {}, action) => {
         labels,
         list: action.data.list,
         total: action.data.total
-      }
+      };
+
+    case CREATE_VOTE_SUCCESS:
+      return {
+        ...state,
+        isVoteCreated: true
+      };
+
+    case CREATE_VOTE_FAILED:
+      return {
+        ...state,
+        isVoteCreated: false
+      };
+
     default:
       return state;
   }

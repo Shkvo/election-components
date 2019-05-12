@@ -9,6 +9,14 @@ export const fetchVotes = async () => await _fetch('votes/overall');
 
 export const fetchVotesByRegion = async id => await _fetch(`votes/region/${id}`);
 
+export const createVote = async vote => await _fetch(`votes`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ vote })
+});
+
 export const fetchCandidates = async () => await _fetch('candidates');
 
 export const deleteCandidate = async id => await _fetch(`candidates/${id}`, {
