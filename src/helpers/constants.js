@@ -38,3 +38,28 @@ export const regionFormFields = [
     isMultiline: true
   }
 ];
+
+export const defaultCandidate = {
+  firstName: '',
+  lastName: '',
+  thirdName: '',
+  description: '',
+  birthDate: null
+};
+
+export const defaultUser = {
+  uid: '',
+  role: 1,
+  regionId: '',
+  firstName: '',
+  lastName: '',
+  thirdName: '',
+  birthDate: null,
+  passportSerial: '',
+  encryptedPassword: ''
+};
+
+export const defaultRegion = {
+  caption: '',
+  description: ''
+};

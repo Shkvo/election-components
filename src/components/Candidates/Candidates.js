@@ -8,20 +8,13 @@ import Table from '../Table';
 import {
   candidateHeaderFields,
   candidateBodyFields,
-  candidateFormFields
+  candidateFormFields,
+  defaultCandidate
 } from '../../helpers/constants';
 
 import './Candidates.scss';
 
 const cnCandidates = cn('Candidates');
-
-const defaultCandidate = {
-  firstName: '',
-  lastName: '',
-  thirdName: '',
-  description: '',
-  birthDate: null
-};
 
 const Candidates = props => {
   const [isEditing, setIsEditing] = useState(false);

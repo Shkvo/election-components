@@ -60,6 +60,11 @@ const Header = () => {
                 Regions
               </MenuItem>
             </Link>
+            <Link to='/votes'>
+              <MenuItem onClick={handleClose}>
+                Votes
+              </MenuItem>
+            </Link>
           </Menu>
           <Typography
             variant="h6"

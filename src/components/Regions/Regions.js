@@ -8,17 +8,13 @@ import Table from '../Table';
 import {
   regionHeaderFields,
   regionBodyFields,
-  regionFormFields
+  regionFormFields,
+  defaultRegion
 } from '../../helpers/constants';
 
 import './Regions.scss';
 
 const cnRegions = cn('Regions');
-
-const defaultRegion = {
-  caption: '',
-  description: ''
-};
 
 const Regions = props => {
   const [isEditing, setIsEditing] = useState(false);
