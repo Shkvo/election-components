@@ -9,12 +9,13 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from '@reach/router';
 import { cn } from '@bem-react/classname';
+import { connect } from 'react-redux';
 
 import './Header.scss';
 
 const cnHeader = cn('Header');
 
-const Header = () => {
+const Header = ({ user }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = useCallback(event => {
@@ -25,59 +26,84 @@ const Header = () => {
     setAnchorEl(null);
   });
 
+  const handleLogout = useCallback(() => {
+    localStorage.clear();
+    window.location.href = '/';
+  });
+
+  const rightElement = user.id ? (
+    <div>
+      <Typography variant="b" color="inherit">
+        {`${user.lastName} ${user.firstName}`}
+      </Typography>
+      <Typography
+        variant="b"
+        color="inherit"
+        onClick={handleLogout}
+        className={cnHeader('logout')}
+      >
+        Logout
+      </Typography>
+    </div>
+  ) : (
+      <Link to="/login">
+        <Button color="inherit">Sign in</Button>
+      </Link>
+    );
+
+  const menuBtn = (
+    <IconButton
+      aria-owns={anchorEl ? 'menu' : undefined}
+      className={cnHeader('button')}
+      color="inherit"
+      aria-label="Menu"
+      aria-haspopup="true"
+      onClick={handleClick}
+    >
+      <MenuIcon />
+    </IconButton>
+  );
+
   return (
     <div className={cnHeader()}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            aria-owns={anchorEl ? 'menu' : undefined}
-            className={cnHeader('button')}
-            color="inherit"
-            aria-label="Menu"
-            aria-haspopup="true"
-            onClick={handleClick}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            id="menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <Link to='/'>
-              <MenuItem onClick={handleClose}>
-                Home
-              </MenuItem>
+          <div className={cnHeader('rightSide')}>
+            {(user.role === 0) ? menuBtn : null}
+            <Menu
+              id="menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <Link to="/">
+                <MenuItem onClick={handleClose}>Home</MenuItem>
+              </Link>
+              <Link to="/candidates">
+                <MenuItem onClick={handleClose}>Candidates</MenuItem>
+              </Link>
+              <Link to="/regions">
+                <MenuItem onClick={handleClose}>Regions</MenuItem>
+              </Link>
+              <Link to="/votes">
+                <MenuItem onClick={handleClose}>Votes</MenuItem>
+              </Link>
+            </Menu>
+            <Link to="/">
+              <Typography variant="h6" color="inherit">
+                Elections
+            </Typography>
             </Link>
-            <Link to='/candidates'>
-              <MenuItem onClick={handleClose}>
-                Candidates
-              </MenuItem>
-            </Link>
-            <Link to='/regions'>
-              <MenuItem onClick={handleClose}>
-                Regions
-              </MenuItem>
-            </Link>
-            <Link to='/votes'>
-              <MenuItem onClick={handleClose}>
-                Votes
-              </MenuItem>
-            </Link>
-          </Menu>
-          <Typography
-            variant="h6"
-            color="inherit"
-            className={cnHeader('title')}
-          >
-            Elections
-          </Typography>
-          <Button color="inherit">Sign in</Button>
+          </div>
+          {rightElement}
         </Toolbar>
       </AppBar>
     </div>
-  )
+  );
 };
 
-export default Header;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps)(Header);

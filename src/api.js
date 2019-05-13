@@ -63,3 +63,15 @@ export const createUser = async user => await _fetch(`users`, {
   },
   body: JSON.stringify({ user })
 });
+
+export const login = async user => await _fetch(`users/login`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(user)
+});
+
+export const fetchUser = async id => await _fetch(`users/${id}`);
+
+export const fetchVoteByUserId = async id => _fetch(`votes/${id}`);

@@ -50,4 +50,12 @@
       background: linear-gradient(to right, #8E54E9, #296cd1);
     }
   }
+
+  &-votedWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    color: #fff;
+  }
 }

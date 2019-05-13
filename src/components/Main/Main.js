@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import { cn } from '@bem-react/classname';
+import { Link } from '@reach/router';
 import { connect } from 'react-redux';
 import * as votesActions from '../../redux/actions/votes';
 import Chart from '../Chart';
@@ -30,9 +31,10 @@ class Main extends Component {
   };
 
   render() {
-    const { labels, votesData, totalVotes, totalUsers, regions } = this.props;
+    const { labels, votesData, totalVotes, totalUsers, regions, user } = this.props;
     const { filter } = this.state;
     const options = [{ id: 'All', caption: 'All' }, ...regions];
+    const makeAChoiceLink = user.id !== undefined ? '/votes' : '/login';
 
     return (
       <div className={cnMain()}>
@@ -54,14 +56,16 @@ class Main extends Component {
           <Typography variant="h2">
             Didn't <br /> make a choice yet?
           </Typography>
-          <Fab
-            size="large"
-            color="primary"
-            variant="extended"
-            className={cnMain('choiceButton')}
-          >
-            Make a choice
-          </Fab>
+          <Link to={makeAChoiceLink}>
+            <Fab
+              size="large"
+              color="primary"
+              variant="extended"
+              className={cnMain('choiceButton')}
+            >
+              Make a choice
+            </Fab>
+          </Link>
         </Paper>
         <Paper className={cnMain('votesCount')}>
           <Typography variant="h5">
@@ -90,6 +94,7 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.user,
   votesData: state.votes.data,
   totalUsers: state.users.total,
   totalVotes: state.votes.total,

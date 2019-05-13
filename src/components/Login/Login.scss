@@ -1,0 +1,44 @@
+.Login {
+  display: grid;
+  grid-template: 64px 1fr 20px 64px / 1fr;
+  justify-items: center;
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+
+  & &-confirm {
+    background: linear-gradient(to right, #8E54E9, #296cd1);
+    width: 150px;
+  }
+
+  &-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-row {
+    display: flex;
+    justify-content: space-between;
+
+    & > div {
+      width: 48%;
+    }
+  }
+
+  &-link {
+    color: #8E54E9;
+
+    &:active, &:visited {
+      color: #8E54E9;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &-actions {
+    display: flex;
+    align-items: flex-end;
+  }
+}

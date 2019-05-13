@@ -59,6 +59,11 @@ export const defaultUser = {
   encryptedPassword: ''
 };
 
+export const defaultLoginUser = {
+  uid: '',
+  encryptedPassword: ''
+};
+
 export const defaultRegion = {
   caption: '',
   description: ''

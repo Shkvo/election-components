@@ -12,6 +12,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import * as votesActions from '../../redux/actions/votes';
 import * as candidatesActions from '../../redux/actions/candidates';
+import * as userActions from '../../redux/actions/user';
 import VoteDialog from '../VoteDialog';
 
 import './Votes.scss';
@@ -33,8 +34,8 @@ const Votes = props => {
   const handleConfirmVote = () => {
     const vote = {
       candidateId: selectedCandidate,
-      userId: 6,
-      regionId: 1
+      userId: props.user.id,
+      regionId: props.user.regionId
     };
     props.createVote(vote);
     setIsVoteDialogOpen(false);
@@ -43,6 +44,7 @@ const Votes = props => {
 
   useEffect(() => {
     props.fetchCandidates();
+    props.fetchVoteByUserId(props.user.id);
   }, []);
 
   const candidates = props.candidates.map(candidate => {
@@ -74,7 +76,17 @@ const Votes = props => {
     );
   });
 
-  return (
+  if (props.user.isVoted) {
+    return (
+      <div className={cnVotes('votedWrapper')}>
+        <Typography className={cnVotes('header')} variant="h2">
+          You have already voted!
+        </Typography>
+      </div>
+    )
+  }
+
+  return props.user.isVoted !== undefined ? (
     <Paper className={cnVotes()}>
       <VoteDialog
         open={isVoteDialogOpen}
@@ -106,16 +118,18 @@ const Votes = props => {
         </Fab>
       </div>
     </Paper>
-  );
+  ) : null;
 };
 
 const mapStateToProps = state => ({
-  candidates: state.candidates.list
+  candidates: state.candidates.list,
+  user: state.user
 });
 
 const mapDispatchToProps = {
   fetchCandidates: candidatesActions.fetchCandidates,
-  createVote: votesActions.createVote
+  createVote: votesActions.createVote,
+  fetchVoteByUserId: userActions.fetchVoteByUserId
 };
 
 export default connect(

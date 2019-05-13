@@ -4,6 +4,11 @@
   header {
     background: #fff;
     color: #000;
+    & > div {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+    }
   }
 
   &-button {
@@ -11,7 +16,21 @@
     margin-right: 20px;
   }
 
-  &-title {
-    flex-grow: 1;
+  & &-logout {
+    color: #8E54E9;
+    display: inline-block;
+    margin-left: 20px;
+    border-left: 1px solid #ccc;
+    padding-left: 20px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &-rightSide {
+    display: flex;
+    align-items: center;
   }
 }

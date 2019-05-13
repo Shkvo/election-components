@@ -5,7 +5,7 @@ import './Chart.scss';
 
 const cnChart = cn('Chart');
 
-const Chart = (props) => {
+const Chart = props => {
   const canvasRef = useRef();
 
   useEffect(() => {
