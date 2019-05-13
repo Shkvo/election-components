@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const VoteDialog = ({ open, handleClose, handleConfirm, candidate }) => (
+const VoteDialog = ({ open, handleClose, handleConfirm }) => (
   <Dialog
     open={open}
     onClose={handleClose}
@@ -16,7 +16,7 @@ const VoteDialog = ({ open, handleClose, handleConfirm, candidate }) => (
     <DialogTitle id="alert-dialog-title">Make a choice</DialogTitle>
     <DialogContent>
       <DialogContentText id="alert-dialog-description">
-        {`Do you really want to vote for ${candidate.firstName} ${candidate.lastName}?`}
+        Do you really want to vote for this candidate?
       </DialogContentText>
     </DialogContent>
     <DialogActions>

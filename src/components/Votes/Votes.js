@@ -40,6 +40,7 @@ const Votes = props => {
     props.createVote(vote);
     setIsVoteDialogOpen(false);
     setSelectedCandidate({});
+    props.navigate('/');
   };
 
   useEffect(() => {
@@ -90,7 +91,6 @@ const Votes = props => {
     <Paper className={cnVotes()}>
       <VoteDialog
         open={isVoteDialogOpen}
-        candidate={selectedCandidate}
         handleClose={handleCloseVoteDialog}
         handleConfirm={handleConfirmVote}
       />
