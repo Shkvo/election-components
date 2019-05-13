@@ -26,7 +26,6 @@ export function* fetchVotes() {
       type: FETCH_VOTES_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -41,7 +40,6 @@ export function* createVote(action) {
       type: CREATE_VOTE_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -58,7 +56,6 @@ export function* fetchVotesByRegion(action) {
       type: FETCH_VOTES_BY_REGION_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 

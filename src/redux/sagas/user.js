@@ -29,7 +29,6 @@ export function* createUser(action) {
       type: CREATE_USER_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -46,7 +45,6 @@ export function* fetchUser(action) {
       type: FETCH_USER_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -63,7 +61,6 @@ export function* fetchVoteByUserId(action) {
       type: FETCH_VOTE_BY_USER_ID_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -83,7 +80,6 @@ export function* login(action) {
       type: LOGIN_USER_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 

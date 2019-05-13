@@ -29,7 +29,6 @@ export function* fetchCandidates() {
       type: FETCH_CANDIDATES_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -47,7 +46,6 @@ export function* deleteCandidate(action) {
       type: DELETE_CANDIDATE_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -64,7 +62,6 @@ export function* createCandidate(action) {
       type: CREATE_CANDIDATE_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -81,7 +78,6 @@ export function* updateCandidate(action) {
       type: UPDATE_CANDIDATE_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 

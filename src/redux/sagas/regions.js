@@ -29,7 +29,6 @@ export function* fetchRegions() {
       type: FETCH_REGIONS_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -47,7 +46,6 @@ export function* deleteRegion(action) {
       type: DELETE_REGION_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -64,7 +62,6 @@ export function* createRegion(action) {
       type: CREATE_REGION_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
@@ -81,7 +78,6 @@ export function* updateRegion(action) {
       type: UPDATE_REGION_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 

@@ -20,7 +20,6 @@ export function* fetchTotalUsers() {
       type: FETCH_TOTAL_USERS_FAILED,
       message: error.message
     });
-    throw error;
   }
 }
 
