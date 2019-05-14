@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import io from 'socket.io-client';
 import { connect } from 'react-redux';
 import { cn } from '@bem-react/classname';
 import Paper from '@material-ui/core/Paper';
@@ -10,7 +11,6 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import socket from '../../helpers/socket';
 import * as votesActions from '../../redux/actions/votes';
 import * as candidatesActions from '../../redux/actions/candidates';
 import * as userActions from '../../redux/actions/user';
@@ -19,6 +19,7 @@ import VoteDialog from '../VoteDialog';
 import './Votes.scss';
 
 const cnVotes = cn('Votes');
+const socket = io('http://localhost:5000');
 
 const Votes = props => {
   const [selectedCandidate, setSelectedCandidate] = useState({});

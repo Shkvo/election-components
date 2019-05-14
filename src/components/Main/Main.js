@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
@@ -9,9 +10,9 @@ import * as votesActions from '../../redux/actions/votes';
 import Chart from '../Chart';
 import Select from '../Select';
 import './Main.scss';
-import socket from '../../helpers/socket';
 
 const cnMain = cn('Main');
+const socket = io('http://localhost:5000');
 
 class Main extends Component {
   state = {
