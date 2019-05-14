@@ -9,6 +9,7 @@ import * as votesActions from '../../redux/actions/votes';
 import Chart from '../Chart';
 import Select from '../Select';
 import './Main.scss';
+import socket from '../../helpers/socket';
 
 const cnMain = cn('Main');
 
@@ -29,6 +30,12 @@ class Main extends Component {
 
     this.setState({ filter });
   };
+
+  componentDidMount() {
+    socket.on('overall', data => {
+      this.props.updateVotes(data);
+    });
+  }
 
   render() {
     const { labels, votesData, totalVotes, totalUsers, regions, user } = this.props;
@@ -103,6 +110,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  updateVotes: votesActions.updateVotes,
   fetchVotes: votesActions.fetchVotes,
   fetchVotesByRegion: votesActions.fetchVotesByRegion
 };

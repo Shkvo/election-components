@@ -2,13 +2,15 @@ import {
   FETCH_VOTES_SUCCESS,
   FETCH_VOTES_BY_REGION_SUCCESS,
   CREATE_VOTE_SUCCESS,
-  CREATE_VOTE_FAILED
+  CREATE_VOTE_FAILED,
+  UPDATE_VOTES
 } from '../types';
 
 export default (state = {}, action) => {
   switch (action.type) {
     case FETCH_VOTES_SUCCESS:
     case FETCH_VOTES_BY_REGION_SUCCESS:
+    case UPDATE_VOTES:
       const labels = [];
       const data = [];
 
@@ -19,7 +21,6 @@ export default (state = {}, action) => {
         labels.push(label);
         data.push(value);
       });
-
       return {
         ...state,
         data,

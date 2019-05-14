@@ -10,6 +10,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import socket from '../../helpers/socket';
 import * as votesActions from '../../redux/actions/votes';
 import * as candidatesActions from '../../redux/actions/candidates';
 import * as userActions from '../../redux/actions/user';
@@ -37,7 +38,8 @@ const Votes = props => {
       userId: props.user.id,
       regionId: props.user.regionId
     };
-    props.createVote(vote);
+
+    socket.emit('vote', vote);
     setIsVoteDialogOpen(false);
     setSelectedCandidate({});
     props.navigate('/');
